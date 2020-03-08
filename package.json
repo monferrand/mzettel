@@ -4,7 +4,7 @@
   "publisher": "monferrand",
   "description": "Make markdown notes for a Zettlekasten",
   "version": "0.0.1",
-  "icon": "mzettle_logo.png",
+  "icon": "./Mzettle.png",
   "engines": {
     "vscode": "^1.42.0"
   },

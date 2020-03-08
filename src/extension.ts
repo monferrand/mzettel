@@ -8,19 +8,20 @@ export function activate(context: vscode.ExtensionContext) {
 
   let disposable = vscode.commands.registerCommand("extension.mzettel", () => {
     // Get the note folder path
-    const notePath = vscode.workspace
-      .getConfiguration("mzettel")
-      .get("notesPath");
-
-    if (notePath === "false") {
-      return vscode.window.showErrorMessage(
-        "You need to set the notesPath of the mzettel extension"
+    let workspaceFolders = vscode.workspace.workspaceFolders;
+    if (workspaceFolders === undefined) {
+        return vscode.window.showErrorMessage(
+          "You need to be in a workspace to use the extension"
         );
-    }
+      }
+
+    let notePath = workspaceFolders[0].uri.fsPath;
+
 
     // make filename
     let filename = generate_random_id() + ".md";
-    let filepath = path.join(String(notePath), filename);
+    let filepath = path.join(notePath, filename);
+    // vscode.workspace.fs.writeFile()
 
     // Create the file
     if (fs.existsSync(filepath)) {

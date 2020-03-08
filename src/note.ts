@@ -4,7 +4,7 @@ import * as path from "path";
 import * as vscode from "vscode";
 
 export async function make_note() {
-    // Make a note and put it in the current workspace
+  // Make a note and put it in the current workspace
 
   // Get the note folder path
   const workspaceFolders = vscode.workspace.workspaceFolders;
@@ -33,20 +33,19 @@ export async function make_note() {
 }
 
 async function get_title(): Promise<string> {
-    // Ask the user for the title of the note
-    let title = await vscode.window.showInputBox({ prompt: "Note Title" });
+  // Ask the user for the title of the note
+  let title = await vscode.window.showInputBox({ prompt: "Note Title" });
 
-    if (title === undefined) {
-      let e: string = "Operation cancelled by the user";
-      vscode.window.showWarningMessage(e);
-      throw new Error(e);
-    }
-    return title;
+  if (title === undefined) {
+    let e: string = "Operation cancelled by the user";
+    vscode.window.showWarningMessage(e);
+    throw new Error(e);
+  }
+  return title;
 }
 
-
 function make_filename(title: string): string {
-    // Make the filename depending on the title and the current date
+  // Make the filename depending on the title and the current date
 
   const date_string: string = new Date()
     .toJSON()
@@ -59,11 +58,25 @@ function make_filename(title: string): string {
     .normalize("NFKD")
     .replace(/\W/g, "");
 
-    filename = `${date_string}_${filename}.md`;
+  filename = `${date_string}_${filename}.md`;
 
   return filename;
 }
 
-function make_content(title: string): string {
-  return "";
+function make_content(title: string) {
+  const date_string: string = new Date().toJSON().slice(0, 10);
+
+  const content: string = `*${date_string}*
+> tags: 
+
+> references: 
+---
+# ${title}
+
+
+---
+Links:
+>   - 
+`;
+    return content;
 }

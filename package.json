@@ -24,7 +24,19 @@
         "command": "extension.mzettel",
         "title": "mzettel note"
       }
-    ]
+    ],
+    "snippets": [
+      {
+        "language": "markdown",
+        "path": "./snippets.json"
+      }
+  ],
+  "keybindings": [
+    {
+      "command": "extension.mzettel",
+      "key": "alt+z",
+      "mac": "option+z"
+    }]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

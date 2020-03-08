@@ -27,7 +27,9 @@ export async function make_note() {
       return vscode.window.showErrorMessage(`File ${filepath} already exist`);
     }
     return vscode.workspace.openTextDocument(filepath).then(doc => {
-      vscode.window.showTextDocument(doc);
+      vscode.window.showTextDocument(doc).then(() => {
+        move_cursor();
+      });
     });
   });
 }
@@ -64,6 +66,7 @@ function make_filename(title: string): string {
 }
 
 function make_content(title: string) {
+    // prepare the string content of the note
   const date_string: string = new Date().toJSON().slice(0, 10);
 
   const content: string = `*${date_string}*
@@ -74,9 +77,26 @@ function make_content(title: string) {
 # ${title}
 
 
+
 ---
 Links:
 >   - 
 `;
-    return content;
+  return content;
+}
+
+function move_cursor() {
+    // Move cursor directly to the body of the nore on line 8
+    const line: number = 7;  // 8-1 
+
+    const editor = vscode.window.activeTextEditor;
+    if (editor === undefined) {
+        throw new Error("Editor not active");
+    }
+
+    const position = editor.selection.active;
+
+    var newPosition = position.with(line, 0);
+    var newSelection = new vscode.Selection(newPosition, newPosition);
+    editor.selection = newSelection;
 }

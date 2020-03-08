@@ -1,0 +1,9 @@
+{
+  "Link": {
+    "prefix": ":link:",
+    "description": "Make a link",
+    "body": [
+        "[$1]($0)"
+    ]
+  }
+}

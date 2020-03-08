@@ -3,8 +3,13 @@
   "displayName": "mzettel",
   "publisher": "monferrand",
   "description": "Make markdown notes for a Zettlekasten",
+<<<<<<< HEAD
   "version": "0.1.0",
   "icon": "Mzettle.png",
+=======
+  "version": "0.0.1",
+  "icon": "./Mzettle.png",
+>>>>>>> c83a34fb61be3c851ee119521fbbd928233d6c9c
   "engines": {
     "vscode": "^1.42.0"
   },

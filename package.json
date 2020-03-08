@@ -2,9 +2,9 @@
   "name": "mzettel",
   "displayName": "mzettel",
   "publisher": "monferrand",
-  "description": "Make markdown notes for a Zettlekasten",
-  "version": "0.1.0",
-  "icon": "Mzettle.png",
+  "description": "Make markdown notes for a Zettelkasten",
+  "version": "0.1.1",
+  "icon": "mzettel.png",
   "engines": {
     "vscode": "^1.42.0"
   },

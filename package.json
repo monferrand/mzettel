@@ -4,12 +4,13 @@
   "publisher": "monferrand",
   "description": "Make markdown notes for a Zettlekasten",
   "version": "0.0.1",
+  "icon": "mzettle_logo.png",
   "engines": {
     "vscode": "^1.42.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/monferrand/mzettel.git"
+    "url": "https://github.com/monferrand/mzettel.git"
   },
   "categories": [
     "Other"

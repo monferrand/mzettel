@@ -67,7 +67,7 @@ function make_filename(title: string): string {
 
 function make_content(title: string) {
     // prepare the string content of the note
-  const date_string: string = new Date().toJSON().slice(0, 10);
+  const date_string: string = new Date().toJSON().slice(0, 16).replace("T", " ");
 
   const content: string = `*${date_string}*
 > tags: 

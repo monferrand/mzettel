@@ -17,7 +17,10 @@ It will prompt you to enter the title of the note and will build and open a
 preformatted note in the current workspace.
 
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/monferrand/mzettel/master/docs/note_creation.gif" alt="Toggle Marp preview" width="600" />
+</p>
+
 ### Keyboard Shortcuts
 
 You can also use the keyboard shortcut `alt + z` to create a new note.
-

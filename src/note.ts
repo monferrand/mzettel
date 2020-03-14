@@ -18,20 +18,22 @@ export async function make_note() {
   // prepare file path and content
   const title: string = await get_title();
   const filename: string = make_filename(title);
-  const filepath: string = path.join(notePath, filename);
+  const file_path: string = path.join(notePath, filename);
   const content: string = make_content(title);
 
-  // Create the file
-  fs.writeFile(filepath, content, { flag: "wx" }, err => {
-    if (err) {
-      return vscode.window.showErrorMessage(`File ${filepath} already exist`);
-    }
-    return vscode.workspace.openTextDocument(filepath).then(doc => {
+  // Create the file (sync for faster result)
+  try {
+    fs.writeFileSync(file_path, content, { flag: "wx" });
+  } catch (error) {
+    return vscode.window.showErrorMessage(`File ${file_path} already exist`);
+  }
+
+  // Open the file 
+  vscode.workspace.openTextDocument(file_path).then(doc => {
       vscode.window.showTextDocument(doc).then(() => {
         move_cursor();
       });
     });
-  });
 }
 
 async function get_title(): Promise<string> {

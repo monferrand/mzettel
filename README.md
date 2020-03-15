@@ -1,4 +1,4 @@
-# mzettel README
+# Mzettel README
 
 > This extension is still very much a work in progress. Please use it accordingly.
 

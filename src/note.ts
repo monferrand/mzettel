@@ -31,17 +31,18 @@ export async function make_note() {
   // Open the file 
   vscode.workspace.openTextDocument(file_path).then(doc => {
       vscode.window.showTextDocument(doc).then(() => {
-        move_cursor();
+        // Move cursor directly to the body of the note on line 8
+        move_cursor(8);
       });
     });
 }
 
 async function get_title(): Promise<string> {
   // Ask the user for the title of the note
-  let title = await vscode.window.showInputBox({ prompt: "Note Title" });
+  const title = await vscode.window.showInputBox({ prompt: "Note Title" });
 
   if (title === undefined) {
-    let e: string = "Operation cancelled by the user";
+    const e: string = "Operation cancelled by the user";
     vscode.window.showWarningMessage(e);
     throw new Error(e);
   }
@@ -56,13 +57,13 @@ function make_filename(title: string): string {
     .slice(0, 10)
     .replace(/-/g, "");
 
-  let filename: string = title
+  const title_string: string = title
     .toLowerCase()
     .replace(/\s/g, "_")
     .normalize("NFKD")
     .replace(/\W/g, "");
 
-  filename = `${date_string}_${filename}.md`;
+  const filename = `${date_string}_${title_string}.md`;
 
   return filename;
 }
@@ -87,18 +88,17 @@ Links:
   return content;
 }
 
-function move_cursor() {
-    // Move cursor directly to the body of the nore on line 8
-    const line: number = 7;  // 8-1 
+function move_cursor(line: number) {
+    // Line count start at 1
+    const line_index = line - 1;
 
     const editor = vscode.window.activeTextEditor;
     if (editor === undefined) {
         throw new Error("Editor not active");
     }
-
     const position = editor.selection.active;
 
-    var newPosition = position.with(line, 0);
-    var newSelection = new vscode.Selection(newPosition, newPosition);
+    const newPosition = position.with(line_index, 0);
+    const newSelection = new vscode.Selection(newPosition, newPosition);
     editor.selection = newSelection;
 }

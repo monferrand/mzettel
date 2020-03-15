@@ -1,17 +1,26 @@
 import * as vscode from "vscode";
-import { make_note } from "./note";
+import { makeNote } from "./note";
+import { linkToClipboard } from "./link";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "mzettel" is now active!');
 
-  let disposable = vscode.commands.registerCommand("extension.mzettel", () => {
-    make_note();
-  });
+  const makeNoteCmd = vscode.commands.registerCommand(
+    "mzettel.makeNote",
+    () => {
+      makeNote();
+    }
+  );
+  context.subscriptions.push(makeNoteCmd);
 
-  context.subscriptions.push(disposable);
+  const linkToClipboardCmd = vscode.commands.registerCommand(
+    "mzettel.linkToClipboard",
+    () => {
+      linkToClipboard();
+    }
+  );
+  context.subscriptions.push(linkToClipboardCmd);
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
-
-

@@ -3,7 +3,7 @@
   "displayName": "Mzettel",
   "publisher": "monferrand",
   "description": "Make markdown notes for a Zettelkasten",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "icon": "mzettel.png",
   "engines": {
     "vscode": "^1.42.0"
@@ -16,15 +16,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.mzettel"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "extension.mzettel",
-        "title": "mzettel note"
-      }
+        "command": "mzettel.makeNote",
+        "title": "Mzettel note"
+      },
+      {
+        "command": "mzettel.linkToClipboard",
+        "title": "Mzettel note link to clipboard"
+      }     
     ],
     "snippets": [
       {
@@ -34,10 +38,17 @@
   ],
   "keybindings": [
     {
-      "command": "extension.mzettel",
+      "command": "mzettel.makeNote",
       "key": "alt+z",
       "mac": "option+z"
-    }]
+    },
+    {
+      "command": "mzettel.linkToClipboard",
+      "key": "alt+l",
+      "mac": "option+l"
+    }
+  
+  ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

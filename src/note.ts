@@ -1,43 +1,38 @@
-import * as crypto from "crypto";
 import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
 
-export async function make_note() {
+import { getWorkspacePath, getEditor } from "./util";
+
+export async function makeNote() {
   // Make a note and put it in the current workspace
 
   // Get the note folder path
-  const workspaceFolders = vscode.workspace.workspaceFolders;
-  if (workspaceFolders === undefined) {
-    return vscode.window.showErrorMessage(
-      "You need to be in a workspace to use the extension"
-    );
-  }
-  const notePath = workspaceFolders[0].uri.fsPath;
+  const notePath = getWorkspacePath();
 
   // prepare file path and content
-  const title: string = await get_title();
-  const filename: string = make_filename(title);
-  const file_path: string = path.join(notePath, filename);
+  const title: string = await getTitle();
+  const filename: string = makeFilename(title);
+  const filePath: string = path.join(notePath, filename);
   const content: string = make_content(title);
 
   // Create the file (sync for faster result)
   try {
-    fs.writeFileSync(file_path, content, { flag: "wx" });
+    fs.writeFileSync(filePath, content, { flag: "wx" });
   } catch (error) {
-    return vscode.window.showErrorMessage(`File ${file_path} already exist`);
+    return vscode.window.showErrorMessage(`File ${filePath} already exist`);
   }
 
   // Open the file 
-  vscode.workspace.openTextDocument(file_path).then(doc => {
+  vscode.workspace.openTextDocument(filePath).then(doc => {
       vscode.window.showTextDocument(doc).then(() => {
         // Move cursor directly to the body of the note on line 8
-        move_cursor(8);
+        moveCursor(8);
       });
     });
 }
 
-async function get_title(): Promise<string> {
+async function getTitle(): Promise<string> {
   // Ask the user for the title of the note
   const title = await vscode.window.showInputBox({ prompt: "Note Title" });
 
@@ -49,7 +44,7 @@ async function get_title(): Promise<string> {
   return title;
 }
 
-function make_filename(title: string): string {
+function makeFilename(title: string): string {
   // Make the filename depending on the title and the current date
 
   const date_string: string = new Date()
@@ -88,14 +83,11 @@ Links:
   return content;
 }
 
-function move_cursor(line: number) {
+function moveCursor(line: number) {
     // Line count start at 1
     const line_index = line - 1;
 
-    const editor = vscode.window.activeTextEditor;
-    if (editor === undefined) {
-        throw new Error("Editor not active");
-    }
+    const editor = getEditor();
     const position = editor.selection.active;
 
     const newPosition = position.with(line_index, 0);

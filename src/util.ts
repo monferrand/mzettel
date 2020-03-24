@@ -1,7 +1,17 @@
 import * as vscode from "vscode";
 
-export function getWorkspacePath(): string {
-  // Get a string representing the fsPath of the current workspace
+export function getNotePath(): string {
+  // Get a string representing the fsPath of the note Path
+
+  // First check the settings for the notepath
+  const configNotesPath: string | null | undefined = vscode.workspace
+    .getConfiguration()
+    .get("mzettel.notesPath");
+  if (configNotesPath) {
+    return configNotesPath;
+  }
+
+  // Otherwise default to the current workspace
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (workspaceFolders === undefined) {
     throw new Error("You need to be in a workspace to use the extension");

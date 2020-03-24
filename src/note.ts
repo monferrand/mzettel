@@ -2,13 +2,13 @@ import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
 
-import { getWorkspacePath, getEditor } from "./util";
+import { getNotePath, getEditor } from "./util";
 
 export async function makeNote() {
   // Make a note and put it in the current workspace
 
   // Get the note folder path
-  const notePath = getWorkspacePath();
+  const notePath = getNotePath();
 
   // prepare file path and content
   const title: string = await getTitle();
@@ -20,16 +20,18 @@ export async function makeNote() {
   try {
     fs.writeFileSync(filePath, content, { flag: "wx" });
   } catch (error) {
-    return vscode.window.showErrorMessage(`File ${filePath} already exist`);
+    return vscode.window.showErrorMessage(
+      `File ${filePath} is invalid or already exists`
+    );
   }
 
-  // Open the file 
+  // Open the file
   vscode.workspace.openTextDocument(filePath).then(doc => {
-      vscode.window.showTextDocument(doc).then(() => {
-        // Move cursor directly to the body of the note on line 8
-        moveCursor(8);
-      });
+    vscode.window.showTextDocument(doc).then(() => {
+      // Move cursor directly to the body of the note on line 8
+      moveCursor(8);
     });
+  });
 }
 
 async function getTitle(): Promise<string> {
@@ -64,33 +66,43 @@ function makeFilename(title: string): string {
 }
 
 function make_content(title: string) {
-    // prepare the string content of the note
-  const date_string: string = new Date().toJSON().slice(0, 16).replace("T", " ");
+  // prepare the string content of the note
+  const date_string: string = new Date()
+    .toJSON()
+    .slice(0, 16)
+    .replace("T", " ");
 
-  const content: string = `*${date_string}*
-> tags: 
+  // Snippets difficult to use due to title use for file name creation
+  const notesTemplate:
+    | string
+    | Array<string>
+    | undefined = vscode.workspace
+    .getConfiguration()
+    .get("mzettel.notesTemplate");
 
-> references: 
----
-# ${title}
+  if (notesTemplate === undefined) {
+    throw Error("The noteTemplate cannot be undefined, Check your settings");
+  }
 
+  const template: string = Array.isArray(notesTemplate)
+    ? notesTemplate.join("\n")
+    : notesTemplate;
 
+  const content: string = template
+    .replace("${date}", date_string)
+    .replace("${title}", title);
 
----
-Links:
->   - 
-`;
   return content;
 }
 
 function moveCursor(line: number) {
-    // Line count start at 1
-    const line_index = line - 1;
+  // Line count start at 1
+  const line_index = line - 1;
 
-    const editor = getEditor();
-    const position = editor.selection.active;
+  const editor = getEditor();
+  const position = editor.selection.active;
 
-    const newPosition = position.with(line_index, 0);
-    const newSelection = new vscode.Selection(newPosition, newPosition);
-    editor.selection = newSelection;
+  const newPosition = position.with(line_index, 0);
+  const newSelection = new vscode.Selection(newPosition, newPosition);
+  editor.selection = newSelection;
 }

@@ -20,6 +20,34 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration":{
+      "title": "Mzettel",
+      "properties": {
+        "mzettel.notesPath": {
+          "type": ["string", null],
+          "default": null,
+          "description": "Give the path were to put the zettelkasten notes. By default will put the note in the current folder."
+        },
+        "mzettel.notesTemplate": {
+          "type": "string",
+          "default":[
+            "*${date}*",
+            "> tags: ",
+            "",
+            "> references: ",
+            "---",
+            "# ${title}",
+            "",
+            "",
+            "",
+            "---",
+            "Links:",
+            ">   - "
+          ],
+          "description": "The template to use for the notes. You can use ${date} and ${title} parameters."
+        }
+      }
+    },
     "commands": [
       {
         "command": "mzettel.makeNote",
@@ -30,12 +58,6 @@
         "title": "Mzettel note link to clipboard"
       }     
     ],
-    "snippets": [
-      {
-        "language": "markdown",
-        "path": "./snippets.json"
-      }
-  ],
   "keybindings": [
     {
       "command": "mzettel.makeNote",

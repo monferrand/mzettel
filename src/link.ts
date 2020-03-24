@@ -1,12 +1,12 @@
 import * as vscode from "vscode";
-import { getWorkspacePath, getEditor } from "./util";
+import { getNotePath, getEditor } from "./util";
 
 export function linkToClipboard() {
   // Prepare a markdown link for the current note and put it to the clipboard
 
   const editor = getEditor();
 
-  const rootPath = getWorkspacePath();
+  const rootPath = getNotePath();
   const fileName = editor.document.fileName.substr(rootPath.length + 1);
 
   const text = editor.document.getText();

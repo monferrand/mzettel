@@ -29,7 +29,7 @@ Prepare a markdown link for the current note and put it to the clipboard.
 ### Keyboard Shortcuts
 
  - Use `alt + z` to create a new note.
- - Use `alt + l` to create a new note.
+ - Use `alt + l` to send the current note link to the clipboard.
 
 
 ### Configurations

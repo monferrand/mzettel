@@ -55,7 +55,7 @@
       },
       {
         "command": "mzettel.linkToClipboard",
-        "title": "Mzettel note link to clipboard"
+        "title":  "Mzettel note link to clipboard"
       }     
     ],
   "keybindings": [

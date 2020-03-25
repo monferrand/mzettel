@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
 
-import { getNotePath, getEditor } from "./util";
+import { getNotePath, getEditor, getNotesTemplate } from "./util";
 
 export async function makeNote() {
   // Make a note and put it in the current workspace
@@ -72,23 +72,9 @@ function make_content(title: string) {
     .slice(0, 16)
     .replace("T", " ");
 
-  // Snippets difficult to use due to title use for file name creation
-  const notesTemplate:
-    | string
-    | Array<string>
-    | undefined = vscode.workspace
-    .getConfiguration()
-    .get("mzettel.notesTemplate");
+  const notesTemplate: string = getNotesTemplate();
 
-  if (notesTemplate === undefined) {
-    throw Error("The noteTemplate cannot be undefined, Check your settings");
-  }
-
-  const template: string = Array.isArray(notesTemplate)
-    ? notesTemplate.join("\n")
-    : notesTemplate;
-
-  const content: string = template
+  const content: string = notesTemplate
     .replace("${date}", date_string)
     .replace("${title}", title);
 

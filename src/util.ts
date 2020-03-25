@@ -27,3 +27,25 @@ export function getEditor(): vscode.TextEditor {
   }
   return editor;
 }
+
+export function getNotesTemplate(): string {
+  // Get the template to use for the note creation.
+
+  // Snippets not used as title also needed in note name
+  const notesTemplate:
+    | string
+    | Array<string>
+    | undefined = vscode.workspace
+    .getConfiguration()
+    .get("mzettel.notesTemplate");
+
+  if (notesTemplate === undefined) {
+    throw Error("The noteTemplate cannot be undefined, Check your settings");
+  }
+
+  const template: string = Array.isArray(notesTemplate)
+    ? notesTemplate.join("\n")
+    : notesTemplate;
+
+  return template;
+}

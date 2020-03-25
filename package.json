@@ -3,7 +3,7 @@
   "displayName": "Mzettel",
   "publisher": "monferrand",
   "description": "Make markdown notes for a Zettelkasten",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "icon": "mzettel.png",
   "engines": {
     "vscode": "^1.42.0"
@@ -20,17 +20,20 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "configuration":{
+    "configuration": {
       "title": "Mzettel",
       "properties": {
         "mzettel.notesPath": {
-          "type": ["string", null],
+          "type": [
+            "string",
+            null
+          ],
           "default": null,
           "description": "Give the path were to put the zettelkasten notes. By default will put the note in the current folder."
         },
         "mzettel.notesTemplate": {
           "type": "string",
-          "default":[
+          "default": [
             "*${date}*",
             "> tags: ",
             "",
@@ -55,22 +58,21 @@
       },
       {
         "command": "mzettel.linkToClipboard",
-        "title":  "Mzettel note link to clipboard"
-      }     
+        "title": "Mzettel note link to clipboard"
+      }
     ],
-  "keybindings": [
-    {
-      "command": "mzettel.makeNote",
-      "key": "alt+z",
-      "mac": "option+z"
-    },
-    {
-      "command": "mzettel.linkToClipboard",
-      "key": "alt+l",
-      "mac": "option+l"
-    }
-  
-  ]
+    "keybindings": [
+      {
+        "command": "mzettel.makeNote",
+        "key": "alt+z",
+        "mac": "option+z"
+      },
+      {
+        "command": "mzettel.linkToClipboard",
+        "key": "alt+l",
+        "mac": "option+l"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

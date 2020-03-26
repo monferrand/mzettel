@@ -3,7 +3,7 @@
 
 Mzettel (Markdown ZETTELkasten) is an extension to facilitate the creation of 
 your own [Zettelkasten](https://writingcooperative.com/zettelkasten-how-one-german-scholar-was-so-freakishly-productive-997e4e0ca125) 
-using markdown files.
+using customizable markdown files.
 
 ## Usage
 

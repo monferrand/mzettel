@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
+var moment = require("moment");
 
 import { getNotePath, getEditor, getNotesTemplate } from "./util";
 
@@ -49,9 +50,9 @@ async function getTitle(): Promise<string> {
 function makeFilename(title: string): string {
   // Make the filename depending on the title and the current date
 
-  const dateTime: string = new Date().toJSON();
-  const dateString: string = dateTime.slice(0, 10).replace(/-/g, "");
-  const timeString: string = dateTime.slice(11, 19).replace(/:/g, "");
+  const now = moment();
+  const dateString: string = now.format("YYYYMMDD");
+  const timeString: string = now.format("HHmmss");
   const titleString: string = title
     .toLowerCase()
     .replace(/\s/g, "_")
@@ -78,15 +79,11 @@ function makeFilename(title: string): string {
 
 function make_content(title: string) {
   // prepare the string content of the note
-  const date_string: string = new Date()
-    .toJSON()
-    .slice(0, 16)
-    .replace("T", " ");
-
+  const date: string = moment().format("YYYY-MM-DD HH-mm");
   const notesTemplate: string = getNotesTemplate();
 
   const content: string = notesTemplate
-    .replace("${date}", date_string)
+    .replace("${date}", date)
     .replace("${title}", title);
 
   return content;

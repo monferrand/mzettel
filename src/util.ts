@@ -4,9 +4,10 @@ export function getNotePath(): string {
   // Get a string representing the fsPath of the note Path
 
   // First check the settings for the notepath
-  const configNotesPath: string | null | undefined = vscode.workspace
-    .getConfiguration()
-    .get("mzettel.notesPath");
+  const configNotesPath:
+    | string
+    | null
+    | undefined = vscode.workspace.getConfiguration().get("mzettel.notesPath");
   if (configNotesPath) {
     return configNotesPath;
   }

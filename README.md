@@ -36,3 +36,4 @@ Prepare a markdown link for the current note and put it to the clipboard.
 
 - `mzettel.notesPath`: Give the path were to put the zettelkasten notes. If not set will put the note in the current folder.
 - `mzettel.notesTemplate`: The template to use for the notes. You can use ${date} and ${title} parameters.
+- `mzettel.filenameTemplate`: The template to use for the note file name. You can use ${date}, ${time} and ${title} parameters.

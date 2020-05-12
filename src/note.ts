@@ -26,7 +26,7 @@ export async function makeNote() {
   }
 
   // Open the file
-  vscode.workspace.openTextDocument(filePath).then(doc => {
+  vscode.workspace.openTextDocument(filePath).then((doc) => {
     vscode.window.showTextDocument(doc).then(() => {
       // Move cursor directly to the body of the note on line 8
       moveCursor(8);
@@ -49,18 +49,29 @@ async function getTitle(): Promise<string> {
 function makeFilename(title: string): string {
   // Make the filename depending on the title and the current date
 
-  const date_string: string = new Date()
-    .toJSON()
-    .slice(0, 10)
-    .replace(/-/g, "");
-
-  const title_string: string = title
+  const dateTime: string = new Date().toJSON();
+  const dateString: string = dateTime.slice(0, 10).replace(/-/g, "");
+  const timeString: string = dateTime.slice(11, 19).replace(/:/g, "");
+  const titleString: string = title
     .toLowerCase()
     .replace(/\s/g, "_")
     .normalize("NFKD")
     .replace(/\W/g, "");
 
-  const filename = `${date_string}_${title_string}.md`;
+  const template: string | undefined = vscode.workspace
+    .getConfiguration()
+    .get("mzettel.filenameTemplate");
+
+  if (template === undefined) {
+    throw Error(
+      "The filenameTemplate cannot be undefined, Check your settings"
+    );
+  }
+
+  const filename: string = template
+    .replace("${date}", dateString)
+    .replace("${time}", timeString)
+    .replace("${title}", titleString);
 
   return filename;
 }

@@ -50,14 +50,24 @@ async function getTitle(): Promise<string> {
 function makeFilename(title: string): string {
   // Make the filename depending on the title and the current date
 
+  const separator: string | undefined = vscode.workspace
+    .getConfiguration()
+    .get("mzettel.titleSeparator");
+
+  if (separator === undefined) {
+    throw Error("The titleSeparator cannot be undefined, Check your settings");
+  }
+
   const now = moment();
   const dateString: string = now.format("YYYYMMDD");
   const timeString: string = now.format("HHmmss");
+  const regex = new RegExp("[^\\w" + separator + "]", "g");
+
   const titleString: string = title
     .toLowerCase()
-    .replace(/\s/g, "_")
+    .replace(/\s/g, separator)
     .normalize("NFKD")
-    .replace(/\W/g, "");
+    .replace(regex, "");
 
   const template: string | undefined = vscode.workspace
     .getConfiguration()

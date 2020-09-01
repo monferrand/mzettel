@@ -61,6 +61,7 @@ function makeFilename(title: string): string {
   const now = moment();
   const dateString: string = now.format("YYYYMMDD");
   const timeString: string = now.format("HHmmss");
+  const minuteString: string = now.format("HHmm");
   const regex = new RegExp("[^\\w" + separator + "]", "g");
 
   const titleString: string = title
@@ -82,6 +83,7 @@ function makeFilename(title: string): string {
   const filename: string = template
     .replace("${date}", dateString)
     .replace("${time}", timeString)
+    .replace("${timeHHmm}", minuteString)
     .replace("${title}", titleString);
 
   return filename;

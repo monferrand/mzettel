@@ -1,16 +1,16 @@
 {
-  "name": "mzettel",
-  "displayName": "Mzettel",
+  "name": "mzettle",
+  "displayName": "mzettle",
   "publisher": "monferrand",
-  "description": "Make markdown notes for a Zettelkasten",
+  "description": "Make markdown notes for a zettlekasten",
   "version": "0.9.0",
-  "icon": "mzettel.png",
+  "icon": "mzettle.png",
   "engines": {
     "vscode": "^1.50.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/monferrand/mzettel.git"
+    "url": "https://github.com/monferrand/mzettle.git"
   },
   "categories": [
     "Other"
@@ -21,17 +21,17 @@
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Mzettel",
+      "title": "Mzettle",
       "properties": {
-        "mzettel.notesPath": {
+        "mzettle.notesPath": {
           "type": [
             "string",
             null
           ],
           "default": null,
-          "description": "Give the path were to put the zettelkasten notes. By default will put the note in the current folder."
+          "description": "Give the path were to put the zettlekasten notes. By default will put the note in the current folder."
         },
-        "mzettel.notesTemplate": {
+        "mzettle.notesTemplate": {
           "type": "string",
           "default": [
             "*${date}*",
@@ -49,12 +49,12 @@
           ],
           "description": "The template to use for the notes. You can use ${date} and ${title} parameters. \n It's an array of string. Each elements of the array gives a newline."
         },
-        "mzettel.filenameTemplate": {
+        "mzettle.filenameTemplate": {
           "type": "string",
           "default": "${date}_${title}.md",
           "description": "The template to use for the note file name. You can use ${date}, ${time} and ${title} parameters."
         },
-        "mzettel.titleSeparator": {
+        "mzettle.titleSeparator": {
           "type": "string",
           "default": "_",
           "description": "Character(s) used to replace the spaces the in title for the filename."
@@ -63,22 +63,22 @@
     },
     "commands": [
       {
-        "command": "mzettel.makeNote",
-        "title": "Mzettel note"
+        "command": "mzettle.makeNote",
+        "title": "mzettle note"
       },
       {
-        "command": "mzettel.linkToClipboard",
-        "title": "Mzettel note link to clipboard"
+        "command": "mzettle.linkToClipboard",
+        "title": "mzettle note link to clipboard"
       }
     ],
     "keybindings": [
       {
-        "command": "mzettel.makeNote",
+        "command": "mzettle.makeNote",
         "key": "alt+z",
         "mac": "option+z"
       },
       {
-        "command": "mzettel.linkToClipboard",
+        "command": "mzettle.linkToClipboard",
         "key": "alt+l",
         "mac": "option+l"
       }

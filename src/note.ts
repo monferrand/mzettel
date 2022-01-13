@@ -62,7 +62,12 @@ function makeFilename(title: string): string {
   const dateString: string = now.format("YYYYMMDD");
   const timeString: string = now.format("HHmmss");
   const minuteString: string = now.format("HHmm");
-  const regex = new RegExp("[^\\w" + separator + "]", "g");
+  const regex = new RegExp(
+    "[^\\w\\u3040-\\u30ff\\u3400-\\u4dbf\\u4e00-\\u9fff\\uf900-\\ufaff\\uff66-\\uff9f" +
+      separator +
+      "]",
+    "g"
+  );
 
   const titleString: string = title
     .toLowerCase()

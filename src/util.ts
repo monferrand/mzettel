@@ -32,7 +32,7 @@ export function getNotesTemplate(): string {
   // Get the template to use for the note creation.
 
   // Snippets not used as title also needed in note name
-  const notesTemplate: string | Array<string> | undefined = vscode.workspace
+  const notesTemplate: Array<string> | undefined = vscode.workspace
     .getConfiguration()
     .get("mzettle.notesTemplate");
 

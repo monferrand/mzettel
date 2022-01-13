@@ -32,7 +32,7 @@
           "description": "Give the path were to put the zettlekasten notes. By default will put the note in the current folder."
         },
         "mzettle.notesTemplate": {
-          "type": "string",
+          "type": "string[]",
           "default": [
             "*${date}*",
             "> tags: ",

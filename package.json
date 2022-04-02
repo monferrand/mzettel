@@ -3,7 +3,7 @@
   "displayName": "mzettel",
   "publisher": "monferrand",
   "description": "Make markdown notes for a zettelkasten",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "icon": "mzettel.png",
   "engines": {
     "vscode": "^1.50.0"

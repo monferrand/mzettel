@@ -1,9 +1,11 @@
 # mzettel README
 
 
-mzettel (Markdown zettlekasten) is an extension to facilitate the creation of 
-your own [zettlekasten](https://writingcooperative.com/zettlekasten-how-one-german-scholar-was-so-freakishly-productive-997e4e0ca125) 
+mzettel (Markdown zettelkasten) is an extension to facilitate the creation of 
+your own [zettelkasten](https://writingcooperative.com/zettelkasten-how-one-german-scholar-was-so-freakishly-productive-997e4e0ca125) 
 using customizable markdown files.
+
+> There is a sister repo and extension but this one is the regularly maintained.
 
 ## Usage
 
@@ -34,7 +36,7 @@ Prepare a markdown link for the current note and put it to the clipboard.
 
 ### Configurations
 
-- `mzettel.notesPath`: Give the path were to put the zettlekasten notes. If not set will put the note in the current folder.
+- `mzettel.notesPath`: Give the path were to put the zettelkasten notes. If not set will put the note in the current folder.
 - `mzettel.notesTemplate`: The template to use for the notes. You can use ${date} and ${title} parameters.
 - `mzettel.filenameTemplate`: The template to use for the note file name. You can use ${date}, ${time} and ${title} parameters. It's an array of string. A new line is created for each element of the array.
 - `mzettel.titleSeparator`: Character(s) used to replace the spaces the in title for the filename. 

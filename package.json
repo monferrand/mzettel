@@ -2,7 +2,7 @@
   "name": "mzettel",
   "displayName": "mzettel",
   "publisher": "monferrand",
-  "description": "Make markdown notes for a zettlekasten",
+  "description": "Make markdown notes for a zettelkasten",
   "version": "0.11.0",
   "icon": "mzettel.png",
   "engines": {
@@ -29,7 +29,7 @@
             null
           ],
           "default": null,
-          "description": "Give the path were to put the zettlekasten notes. By default will put the note in the current folder."
+          "description": "Give the path were to put the zettelkasten notes. By default will put the note in the current folder."
         },
         "mzettel.notesTemplate": {
           "type": "array",

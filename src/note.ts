@@ -52,7 +52,7 @@ function makeFilename(title: string): string {
 
   const separator: string | undefined = vscode.workspace
     .getConfiguration()
-    .get("mzettle.titleSeparator");
+    .get("mzettel.titleSeparator");
 
   if (separator === undefined) {
     throw Error("The titleSeparator cannot be undefined, Check your settings");
@@ -77,7 +77,7 @@ function makeFilename(title: string): string {
 
   const template: string | undefined = vscode.workspace
     .getConfiguration()
-    .get("mzettle.filenameTemplate");
+    .get("mzettel.filenameTemplate");
 
   if (template === undefined) {
     throw Error(

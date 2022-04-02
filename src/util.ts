@@ -6,7 +6,7 @@ export function getNotePath(): string {
   // First check the settings for the notepath
   const configNotesPath: string | null | undefined = vscode.workspace
     .getConfiguration()
-    .get("mzettle.notesPath");
+    .get("mzettel.notesPath");
   if (configNotesPath) {
     return configNotesPath;
   }
@@ -34,7 +34,7 @@ export function getNotesTemplate(): string {
   // Snippets not used as title also needed in note name
   const notesTemplate: Array<string> | undefined = vscode.workspace
     .getConfiguration()
-    .get("mzettle.notesTemplate");
+    .get("mzettel.notesTemplate");
 
   if (notesTemplate === undefined) {
     throw Error("The noteTemplate cannot be undefined, Check your settings");

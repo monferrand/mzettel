@@ -1,16 +1,16 @@
 {
-  "name": "mzettle",
-  "displayName": "mzettle",
+  "name": "mzettel",
+  "displayName": "mzettel",
   "publisher": "monferrand",
   "description": "Make markdown notes for a zettlekasten",
   "version": "0.10.4",
-  "icon": "mzettle.png",
+  "icon": "mzettel.png",
   "engines": {
     "vscode": "^1.50.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/monferrand/mzettle.git"
+    "url": "https://github.com/monferrand/mzettel.git"
   },
   "categories": [
     "Other"
@@ -21,9 +21,9 @@
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Mzettle",
+      "title": "mzettel",
       "properties": {
-        "mzettle.notesPath": {
+        "mzettel.notesPath": {
           "type": [
             "string",
             null
@@ -31,7 +31,7 @@
           "default": null,
           "description": "Give the path were to put the zettlekasten notes. By default will put the note in the current folder."
         },
-        "mzettle.notesTemplate": {
+        "mzettel.notesTemplate": {
           "type": "array",
           "default": [
             "*${date}*",
@@ -49,12 +49,12 @@
           ],
           "description": "The template to use for the notes. You can use ${date} and ${title} parameters. \n It's an array of string. Each elements of the array gives a newline."
         },
-        "mzettle.filenameTemplate": {
+        "mzettel.filenameTemplate": {
           "type": "string",
           "default": "${date}_${title}.md",
           "description": "The template to use for the note file name. You can use ${date}, ${time} and ${title} parameters."
         },
-        "mzettle.titleSeparator": {
+        "mzettel.titleSeparator": {
           "type": "string",
           "default": "_",
           "description": "Character(s) used to replace the spaces the in title for the filename."
@@ -63,22 +63,22 @@
     },
     "commands": [
       {
-        "command": "mzettle.makeNote",
-        "title": "mzettle note"
+        "command": "mzettel.makeNote",
+        "title": "mzettel note"
       },
       {
-        "command": "mzettle.linkToClipboard",
-        "title": "mzettle note link to clipboard"
+        "command": "mzettel.linkToClipboard",
+        "title": "mzettel note link to clipboard"
       }
     ],
     "keybindings": [
       {
-        "command": "mzettle.makeNote",
+        "command": "mzettel.makeNote",
         "key": "alt+z",
         "mac": "option+z"
       },
       {
-        "command": "mzettle.linkToClipboard",
+        "command": "mzettel.linkToClipboard",
         "key": "alt+l",
         "mac": "option+l"
       }

@@ -3,10 +3,10 @@ import { makeNote } from "./note";
 import { linkToClipboard } from "./link";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "mzettle" is now active!');
+  console.log('Congratulations, your extension "mzettel" is now active!');
 
   const makeNoteCmd = vscode.commands.registerCommand(
-    "mzettle.makeNote",
+    "mzettel.makeNote",
     () => {
       makeNote();
     }
@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(makeNoteCmd);
 
   const linkToClipboardCmd = vscode.commands.registerCommand(
-    "mzettle.linkToClipboard",
+    "mzettel.linkToClipboard",
     () => {
       linkToClipboard();
     }

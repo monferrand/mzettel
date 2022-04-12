@@ -46,3 +46,41 @@ export function getNotesTemplate(): string {
 
   return template;
 }
+
+export async function getTitle(): Promise<string> {
+  // Ask the user for the title of the note
+  const title = await vscode.window.showInputBox({ prompt: "Note Title" });
+
+  if (title === undefined) {
+    const e: string = "Operation cancelled by the user";
+    vscode.window.showWarningMessage(e);
+    throw new Error(e);
+  }
+  return title;
+}
+
+export function getSeparator(): string {
+  const separator = vscode.workspace
+    .getConfiguration()
+    .get<string>("mzettel.titleSeparator");
+
+  if (separator === undefined) {
+    throw Error("The titleSeparator cannot be undefined, Check your settings");
+  }
+
+  return separator;
+}
+
+export function getFilenameTemplate(): string {
+  const template = vscode.workspace
+    .getConfiguration()
+    .get<string>("mzettel.filenameTemplate");
+
+  if (template === undefined) {
+    throw Error(
+      "The filenameTemplate cannot be undefined, Check your settings"
+    );
+  }
+
+  return template;
+}

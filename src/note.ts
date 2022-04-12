@@ -1,16 +1,17 @@
-var moment = require("moment");
+import { formatDate } from "./date";
 
 export function makeFilename(
   title: string,
   separator: string,
   template: string,
-  now = moment()
+  now = new Date()
 ): string {
   // Make the filename depending on the title and the current date
 
-  const dateString: string = now.format("YYYYMMDD");
-  const timeString: string = now.format("HHmmss");
-  const minuteString: string = now.format("HHmm");
+  const dateString = formatDate.call(now, "YYYYMMDD");
+  const timeString = formatDate.call(now, "HHmmss");
+  const minuteString = formatDate.call(now, "HHmm");
+
   const regex = new RegExp(
     "[^\\w\\u3040-\\u30ff\\u3400-\\u4dbf\\u4e00-\\u9fff\\uf900-\\ufaff\\uff66-\\uff9f" +
       separator +
@@ -36,10 +37,10 @@ export function makeFilename(
 export function make_content(
   title: string,
   contentTemplate: string,
-  now = moment()
+  now = new Date()
 ) {
   // prepare the string content of the note
-  const date: string = now.format("YYYY-MM-DD HH-mm");
+  const date: string = formatDate.call(now, "YYYY-MM-DD HH-mm");
 
   const content: string = contentTemplate
     .replace("${date}", date)

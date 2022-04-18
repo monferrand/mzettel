@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
-import { makeNote } from "./note";
+
+import { makeNote } from "./commands";
 import { linkToClipboard } from "./link";
 
 export function activate(context: vscode.ExtensionContext) {
